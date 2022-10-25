@@ -1,0 +1,71 @@
+@use 'mixins';
+@use 'variables';
+
+.earlyAccess{    
+    width: 375px;
+    border: 1px solid greenyellow;
+    background: variables.$DesaturatedBlue;
+    color: variables.$White;
+    padding: 62px 38px; //sup derecha down izq      
+}
+.earlyAccess__title{
+    margin-bottom: 30px;
+    text-align: center;
+}
+.earlyAccess__descriptionText{
+    text-align: center;
+    font-size: 0.91em;
+    margin-bottom: 25px;
+}
+.earlyAccess__form input{    
+   display: flex;
+   flex-direction: column;
+   height: 40px;
+   width: 100%;
+   border-radius: 4px;
+   border: none;
+   margin-bottom: 15px;
+}   
+.earlyAccess__form input[type="text"]{
+    padding-left: 15px; 
+    border: none;
+}
+.earlyAccess__form input[type="text"]::placeholder{ 
+    color: variables.$LightGray;                       
+}
+.earlyAccess__form input[type="submit"]{
+    background-color: variables.$BrightBlue;
+    color: variables.$LightGrayishBlue;
+    font-family: variables.$HeadingsFont;
+    font-weight: 700;
+    font-size: 0.9em;          
+}
+.early:hover{
+    cursor: pointer;
+    filter: brightness(120%);
+}
+
+@media (min-width: 1440px){
+    .earlyAccess{
+         display: flex;   
+         align-items: center;
+         padding: 75px;
+         gap: -75px;
+    }       
+    .earlyAccess__title{
+        text-align: left;
+        width: 720px;
+    }
+    .earlyAccess__descriptionText{
+        text-align: left;                
+        width: 500px;
+        font-size: 1em;
+    }
+    .earlyAccess__form input[type="text"]{
+        width: 565px;
+    }
+    .earlyAccess__form input[type="submit"]{
+        width: 250px;
+    }
+  
+}

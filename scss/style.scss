@@ -1,0 +1,212 @@
+//sass no compila si el @use no va en las primeras lineas antes de fonts family
+@use 'earlyaccess';
+@use 'variables';
+@use 'initial';
+@use 'mixins';
+@use 'card';
+@use 'footer';
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: variables.$BodyFont;
+    color: variables.$VeryDarkBlue;
+    
+}
+.mainContainer{   
+    width: 375px;
+    margin: auto;
+    @include mixins.desktop-view;
+} 
+//barra de navegacion
+.navBar{    
+    display: flex;
+    justify-content: space-between;    
+    align-items: center;
+    padding: 24px 24px 0; //24 parte superior 24 a los lados. abajo nada
+    margin-bottom: 100px;
+    &__logo{
+        width: 80px;
+        height: 25px;
+        @include mixins.desktop-view(170px);
+    }
+    &__navContainer{
+        color: black;
+        font-weight: 500;
+        display: flex;
+        width: 167px;
+        font-size: 0.8em;
+        font-family: variables.$HeadingsFont;
+        justify-content: space-between;
+        @include mixins.desktop-view(274px, unset, 1em);
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            color: variables.$Black;;
+            &:hover{
+                color: variables.$BrightBlue;
+            }
+        }
+    }
+}
+//header section
+.header{   
+    padding: 0 24px 182px; //0 en top 24 en ambos lados 182, notese que los 182px se generaron en la parte inferior de la seccion header osea se genero el spacio abajo de los inputs del form      
+    //NORMAL WAY
+    // background-image: url(../images/bg-curve-mobile.svg);
+    // background-repeat: no-repeat;
+    // background-position-y: bottom;
+    //DOING properties NESTING----NOTECE QUE HAY UN ESPACIO ENTRE LOS DOS PUNTOS DE BK Y LOS CORCHETES,,, SI NO NO FUNCIONA
+    background: {
+        image: url(../images/bg-curve-mobile.svg);        
+        repeat: no-repeat;
+        position-y: bottom;        
+    }               
+    &__illustration{
+        width: 100%;
+         //la img se hace al 100% de su contenedor xq header esta contenido en mainContainer ya declarado con los 375px width 
+        margin-bottom: 40px; //separacion del titulo pa abajo contra los demas elementos de abajo
+        @include mixins.ilustration-desktop-view;
+    }
+    .headerContent{ //como es un subelemento así se tiene que declarrar mijis
+        &__title{
+            font-size: 1.5em;
+            font-family: variables.$HeadingsFont;
+            text-align: center;
+            line-height: 35px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        &__descriptionText{
+            text-align: center;
+            font-size: 0.95em;
+            margin-bottom: 30px;            
+        }
+        &__form{
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column; //para ponerlos uno debajo del otro          
+            height: 100px;  //le da altura al form como contenedor
+        }
+        // secion de caracteristicas que tienen ambos inputs...&__form input
+        &__form input{  //se hace uso del css tradicional en la regla para diferencia que ya hay 4 niveles de nesting...pero igual se puede hacer nesting con &
+            height: 40px;
+            border-radius: 4px;
+            border: 1px solid variables.$LightGray; //le da la sutilidaaa... del borde baboso
+        }
+        &__form input[type="text"]{
+            padding-left: 15px;  //recorre a la derecha el texto del placeholder YYYyyyyyy... nomas con este selector recorre el texto el ::placeholder no lo recorre con el padding
+        }
+        &__form input[type="text"]::placeholder{ //aqui se selecciona el placeholder
+            color: variables.$LightGray;                       
+        }
+        &__form input[type="submit"]{
+            @include mixins.button;            
+        }
+    }
+}
+@media (min-width: 1440px){ //seccion responsiva de la imagen del header
+    .header{
+        background-image: url(../images/bg-curve-desktop.svg);
+        display: flex;
+        flex-direction: row-reverse;        
+        justify-content: center;
+        align-items: center;
+        gap: 38px;
+        height: 720px;
+        .headerContent{
+            width: 590px;           
+            &__title{
+                text-align: left;
+                font-size: 2.5em;
+                line-height: 60px;                
+            }
+            &__descriptionText{
+                text-align: left;
+                font-size: 1.15em;                          
+            }
+            &__form{
+                flex-direction: row;
+                gap: 15px;               
+                width: 545px;
+                height: 50px;
+            }
+            &__form input{
+                flex-grow: 1; //que va a ocupar todo lo disponible pero de forma igual cada elemento
+                //so 1 indica que los elementos tienen el mismo tamaño, si 2 1 primer elemento 2 veces mas grande que 1 del segundo elementos
+            }
+        }
+    }
+}
+.details{
+    background-color:  variables.$LightGrayishBlue; 
+    width: 100%;   
+    height: 900px; //seccion details contenedor alto 900 estupido
+    padding: 0 24px;  //0 de la parte superior e inferior 24px a los lados       
+    &__illustration{
+        width: 100%;
+        margin-bottom: 80px;
+        @include mixins.ilustration-desktop-view;        
+    }
+    .detailsContent{
+        &__title{
+            font-size: 1em;
+            font-family: variables.$HeadingsFont;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        &__descriptionText{
+            margin-bottom: 25px;
+            line-height: 20px;
+            font-size: 0.86em;
+        }
+        &__link{        
+            display: block;
+            width: 100%; //osea que el elemento ocupe el100% de su contenedorsito
+            text-align: center;
+            margin-bottom: 40px;
+            color: variables.$ModerateCyan;
+        }        
+    }
+}
+@media (min-width: 1440px){ //seccion responsiva del header
+    .details{        
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: center;
+        align-items: center;           
+        height: 677px;
+        gap: 50px;
+        &__illustration{
+            width: 550px;
+        }
+        .detailsContent{          
+            height: 498px;
+        }
+        .detailsContent__title{
+             text-align: left;
+             font-size: 2.5em;
+        }
+        .detailsContent__descriptionText{
+            width: 520px;
+            font-size: 1em;
+            line-height: 25px;
+        }
+        .detailsContent__link{
+            text-align: left;
+        }
+    }
+}
+.attribution{
+    font-size: 11px;
+    text-align: center;
+}
+
+.attribution a{
+    color: hsl(228, 45%, 44%); 
+}

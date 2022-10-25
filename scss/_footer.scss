@@ -1,0 +1,68 @@
+@use 'variables';
+
+.footer{
+    background-color: variables.$VeryDarkBlue;
+    color: variables.$White;
+    padding: 65px 65px 45px 49px;
+    &__logo{
+        margin-bottom: 30px;
+    }
+    &__phoneContainer{
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+        a{
+            text-decoration: none;
+            color: variables.$White;
+            &:hover{
+                color: variables.$BrightBlue;
+            }
+        }       
+    }
+    &__emailContainer{
+        @extend .footer__phoneContainer;
+    } 
+    ul{
+        // display: flex;
+        // flex-direction: column;   //para poder utilizar gap se uso flex y column
+        // gap: 16px;      // usra lineheight es lo mismo
+        margin-bottom: 16px; //le da separacion a las secciones
+        line-height: 32px;
+        li{
+            list-style: none;
+            &:hover{
+                cursor: pointer;
+                color: variables.$BrightBlue;
+            }
+        }
+    }
+    &__socialMedia__container{        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+        height: 100px;
+        .socialIcon{
+            border: 1px solid white;
+            width: 28px;
+            height: 28px;
+            display: grid;
+            place-items: center;
+            border-radius: 50%;
+            &:hover{
+                cursor: pointer;
+                border-color: variables.$BrightBlue;
+                color: variables.$BrightBlue;
+            }
+        }
+    }
+}
+@media (min-width: 1440px){
+    .footer{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 108px 156px 72px 80px ; //  top, izq, bottom, derecha
+        // gap: 50px;
+    }
+}

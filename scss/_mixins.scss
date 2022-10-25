@@ -1,0 +1,34 @@
+@use 'variables';
+
+// vista desktop
+@mixin desktop-view($width: 1440px, $height: unset, $f-size: unset) {
+    @media (min-width: 1440px){        
+            width: $width;              
+            height: $height;
+            font-size: $f-size;
+    }
+}
+
+
+
+// botones
+@mixin button{
+    background-color: variables.$BrightBlue;
+    color: variables.$LightGrayishBlue;
+    font-family: variables.$HeadingsFont;
+    font-weight: 700;
+    font-size: 0.9em;
+    border: none;
+    &:hover{
+        cursor: pointer;
+        filter: brightness(120%);
+    }
+}
+
+/*cambios de la img de mobil a desktop*/
+@mixin ilustration-desktop-view {
+    @media (min-width: 1440px) {
+        width: 640px;
+    }
+}
+

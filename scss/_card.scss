@@ -1,0 +1,36 @@
+@use 'variables';
+
+.card{
+    background-color: variables.$White;
+    width: 286px;
+    height: 175px;
+    padding: 20px 20px 24px;
+    margin: auto; /*pa que centre la card hijoep*/
+    border-radius: 4px;
+    box-shadow: 0 0 20px variables.$LightGray;
+    margin-bottom: 100px;
+    &__descriptionText{
+        font-size: 0.67em;
+        line-height: 20px;
+        margin-bottom: 10px;
+    }
+    .avatarContainer{
+            display: flex;
+            font-size: 0.67em;       
+        &__image{
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        &__name{
+            font-weight: 700;
+        }
+    }
+}
+//alinea la tarjeta a la derecha
+@media (min-width: 1440px){
+     .card{
+         margin: 0;
+     }
+}
